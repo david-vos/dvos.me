@@ -1,0 +1,58 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Doto', Arial, sans-serif;
+  cursor: none;
+
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.cursor-ball {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  position: absolute;
+  border-radius: 50%;
+  z-index: 100;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+
+.cursor-outline {
+  width: 2.1rem;
+  height: 2.1rem;
+  border: 1px solid #fff;
+  position: absolute;
+  border-radius: 50%;
+  z-index: 100;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease;
+  display: block;
+}
+
+.cursor-mousedown {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 2px solid #000;
+  background-color: #ffffff;
+}
+
+.scale-link {
+  transform: scale(1.5);
+  background: #000;
+}
+
+.hovered-link {
+  color: gray;
+}
+
