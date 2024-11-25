@@ -58,6 +58,16 @@ void main(void) {
 `
 
 function setup() {
+    // Select the container where the canvas should be placed
+  const container = document.getElementById('canvas-container');
+  const containerWidth = container.offsetWidth;
+  const containerHeight = container.offsetHeight;
+
+  // Create a canvas that fits within the container
+  let canvas = createCanvas(containerWidth, containerHeight);
+  canvas.parent('canvas-container'); // Attach canvas to the container
+  noCursor();
+
   mainCanvas = createCanvas(windowWidth, windowHeight);
   grainBuffer = createGraphics(width, height, WEBGL);
   grainShader = grainBuffer.createShader(vert, frag);
@@ -94,6 +104,12 @@ function makeDistortedDots(amount, color, rez, time, maxDistance, mouseX, mouseY
       );
     }
   }
+}
+
+// Adjust the canvas size dynamically if the window is resized
+function windowResized() {
+  const container = document.getElementById('canvas-container');
+  resizeCanvas(container.offsetWidth, container.offsetHeight);
 }
 
 function applyGrain() {

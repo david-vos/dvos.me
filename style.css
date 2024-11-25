@@ -1,20 +1,59 @@
+/* General setup */
 body, html {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  background-color: black;
   font-family: 'Doto', Arial, sans-serif;
   cursor: none;
-
+  overflow: hidden;
 }
 
-main {
+.container {
   position: relative;
   width: 100%;
   height: 100%;
 }
 
+/* Vertical link styling */
+.vertical-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  color: white;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.vertical-link a {
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+}
+
+/* Canvas container with borders */
+.canvas-container {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for centering */
+  width: calc(100% - 100px); /* Offset for the border space */
+  height: calc(100% - 100px); /* Offset for the border space */
+  border-top: 1px solid white;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
+  display: flex; /* Use flexbox for centering the canvas */
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+  overflow: hidden; /* Ensure no content spills out */
+}
+
+/* Cursor styling */
 .cursor-ball {
   width: 10px;
   height: 10px;
@@ -24,35 +63,24 @@ main {
   z-index: 100;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  display: block;
 }
 
 .cursor-outline {
   width: 2.1rem;
   height: 2.1rem;
-  border: 1px solid #fff;
+  border: 1px solid white;
   position: absolute;
   border-radius: 50%;
   z-index: 100;
   pointer-events: none;
   transform: translate(-50%, -50%);
   transition: all 0.1s ease;
-  display: block;
 }
 
 .cursor-mousedown {
   width: 1.5rem;
   height: 1.5rem;
-  border: 2px solid #000;
-  background-color: #ffffff;
-}
-
-.scale-link {
-  transform: scale(1.5);
-  background: #000;
-}
-
-.hovered-link {
-  color: gray;
+  border: 2px solid black;
+  background-color: white;
 }
 
