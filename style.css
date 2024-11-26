@@ -22,8 +22,8 @@ body, html {
   top: 50%; /* Center vertically */
   left: 0%; /* Center horizontally */
   transform: translate(-50%, -50%); /* Adjust for centering */
-  height: calc(100% - 100px); /* Offset for the border space */
-  width: calc(100% - 100% + 100px);
+  height: calc(100% - 150px); /* Offset for the border space */
+  width: calc(100% - 100% + 150px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,6 +42,36 @@ body, html {
   transform: rotate(180deg); /* Rotate the entire link content */
 }
 
+.mode-switcher  {
+  padding-bottom: 20px;
+  font-style: italic;
+  font-size: 1em !important;;
+}
+
+.vertical-legacy-page {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 100%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust for centering */
+  height: calc(100% - 150px); /* Offset for the border space */
+  width: calc(100% - 100% + 150px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+.vertical-legacy-page a  {
+  position: absolute;
+  left: 0;
+  writing-mode: vertical-rl; /* Keep vertical orientation */
+  text-orientation: mixed; /* Adjust text orientation */
+  text-decoration: none;
+  color: gray;
+  font-style: italic;
+  font-size: 1em !important;
+}
 
 /* Canvas container with borders */
 .canvas-container {
@@ -49,8 +79,8 @@ body, html {
   top: 50%; /* Center vertically */
   left: 50%; /* Center horizontally */
   transform: translate(-50%, -50%); /* Adjust for centering */
-  width: calc(100% - 100px); /* Offset for the border space */
-  height: calc(100% - 100px); /* Offset for the border space */
+  width: calc(100% - 150px); /* Offset for the border space */
+  height: calc(100% - 150px); /* Offset for the border space */
   border-top: 1px solid white;
   border-left: 1px solid white;
   border-right: 1px solid white;
