@@ -58,7 +58,7 @@ void main(void) {
 `
 
 function setup() {
-    // Select the container where the canvas should be placed
+  // Select the container where the canvas should be placed
   const container = document.getElementById('canvas-container');
   const containerWidth = container.offsetWidth;
   const containerHeight = container.offsetHeight;
