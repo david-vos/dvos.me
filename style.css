@@ -16,11 +16,31 @@ body, html {
   height: 100%;
 }
 
+/* Title styles */
+.title-container {
+  position: absolute; /* Positioned inside the canvas */
+  top: 30%;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 4rem; /* Adjust size as needed */
+  color: #fff; /* White for the main title */
+  margin: 0;
+}
+
+.under-title {
+  font-size: 1.5rem; /* Smaller than the main title */
+  color: rgba(255, 255, 255, 0.7); /* Less white */
+  margin-top: 0.5rem;
+  font-weight: lighter;
+}
+
 /* Vertical link styling */
 .vertical-link {
   position: absolute;
   top: 50%; /* Center vertically */
-  left: 0%; /* Center horizontally */
+  left: 0; /* Center horizontally */
   transform: translate(-50%, -50%); /* Adjust for centering */
   height: calc(100% - 150px); /* Offset for the border space */
   width: calc(100% - 100% + 150px);

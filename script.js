@@ -96,8 +96,9 @@ function makeDistortedDots(amount, color, rez, time, maxDistance, mouseX, mouseY
 
   for (let i = -leeway; i < width + leeway; i += w) {
     for (let j = -leeway; j < height + leeway; j += w) {
+      if ((i < width * 0.35 && j < height * 0.35) || (i > width * 0.65 && j > height * 0.65)) continue;
       let distance = dist(i, j, mouseX, mouseY);
-      let effectStrength = map(distance, 0, maxDistance, -amount / 4, 0);
+      let effectStrength = map(distance/4, 0, maxDistance, -amount / 4, 0);
       point(
         i + (noise(i * rez, j * rez, time) * amount) - amount / 2 + effectStrength,
         j + (noise(i * rez, j * rez, time + 100) * amount) - amount / 2 + effectStrength
