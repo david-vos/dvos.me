@@ -4,8 +4,6 @@
   <title>David Vos - Software Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <script src="./p5.min.js"></script>
-  <script src="./script.js"></script>
 </head>
 <body>
   <div class="cursor-ball"></div>
@@ -20,6 +18,15 @@
         <a>Legacy Page</a>
     </div>
     <main class="canvas-container" id="canvas-container">
+      <nav class="nav-container">
+          <a class="nav-contact" onclick="alert('Contact')">Contact</a>
+          <div class="nav-virtical-container">
+            <a class="nav-projects" onclick="alert('Projects')">Projects</a>
+            <a class="nav-home" onclick="alert('Home')">Home</a>
+            <a class="nav-inspiration" onclick="alert('Inspiration')">Inspiration</a>
+          </div>
+          <a class="nav-about" onclick="alert('About')">About</a>
+      </nav>
       <div class="title-container">
         <div class="main-title">
           David Vos
@@ -32,8 +39,10 @@
       <div class="main-text">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
       </div>
-      </main>
+    </main>
   </div>
+  <script src="./p5.min.js"></script>
+  <script src="./script.js"></script>
 </body>
 </html>
 

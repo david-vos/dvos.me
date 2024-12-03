@@ -16,6 +16,52 @@ body, html {
   height: 100%;
 }
 
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  color: rgba(255, 255, 255, 0.7); /* Less white */
+  font-size: 1.2em;
+}
+
+.nav-virtical-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-home {
+  color: #ffffff;
+  font-size: 1.7em;
+}
+
+.nav-about {
+  writing-mode: vertical-rl; /* Keep vertical orientation */
+  text-orientation: mixed; /* Adjust text orientation */
+  font-size: 1.4em;
+}
+
+.nav-contact {
+  writing-mode: vertical-rl; /* Keep vertical orientation */
+  text-orientation: mixed; /* Adjust text orientation */
+  font-size: 1.2em;
+  transform: rotate(180deg); /* Rotate the entire link content */
+}
+
+.nav-projects {
+  font-size: 0.9em;
+  /* TODO: Translate this so that it is mirrored. this way you can actually read the text*/
+  transform: rotate(180deg); /* Rotate the entire link content */
+  margin-right: 2em;
+}
+
+.nav-inspiration {
+  font-size: 1.3em;
+  margin-left: 1em;
+}
+
 /* Title styles */
 .title-container {
   position: absolute; /* Positioned inside the canvas */
@@ -24,7 +70,8 @@ body, html {
 }
 
 .main-title {
-  font-size: 4rem; /* Adjust size as needed */
+  /* TODO: add a red dot on the I of david. Maybe Also a red o with the Vos*/
+  font-size: 5.5em; /* Adjust size as needed */
   color: #fff; /* White for the main title */
   margin: 0;
 }
@@ -142,3 +189,10 @@ body, html {
   background-color: white;
 }
 
+.main-text {
+  position: absolute;
+  bottom: 25%;
+  right: 5%;
+  color: #ffffff;
+  font-size: 1em;
+}
