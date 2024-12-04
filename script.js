@@ -189,4 +189,61 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  // Map of navigation elements and their corresponding text sections
+  const navMapping = {
+    "nav-home": "main-text-home",
+    "nav-about": "main-text-about",
+    "nav-projects": "main-text-projects",
+    "nav-inspiration": "main-text-inspiration",
+    "nav-contact": "main-text-contact"
+  };
+
+  // Get all nav elements
+  const navItems = document.querySelectorAll(".nav-container a");
+
+  // Function to update active styles for the nav menu
+  const updateNavStyles = (activeNavClass) => {
+    navItems.forEach(navItem => {
+      if (navItem.classList.contains(activeNavClass)) {
+       navItem.classList.add("active-nav");
+       navItem.classList.remove("inactive-nav");
+      } else {
+       navItem.classList.add("inactive-nav");
+       navItem.classList.remove("active-nav"); 
+      }
+    });
+  };
+
+  // Attach event listeners to each nav item
+  navItems.forEach(navItem => {
+    navItem.addEventListener("click", () => {
+      // Get the ID of the corresponding text section
+      const targetId = navMapping[navItem.classList[0]];
+      
+      if (targetId) {
+        // Hide all main text sections
+        Object.values(navMapping).forEach(id => {
+          const section = document.getElementById(id);
+          if (section) {
+            section.style.display = "none";
+          }
+        });
+
+        // Show the selected text section
+        const targetSection = document.getElementById(targetId);
+        if (targetSection) {
+          targetSection.style.display = "block";
+        }
+
+        // Update navigation menu styles
+        updateNavStyles(navItem.classList[0]);
+      }
+    });
+  });
+
+  // Set default active section (optional)
+  const defaultNavClass = "nav-home";
+  document.querySelector(`.${defaultNavClass}`).click();
+});
 

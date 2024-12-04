@@ -189,10 +189,34 @@ body, html {
   background-color: white;
 }
 
-.main-text {
+  .main-text {
+  all: unset;
+  width: 20%;
   position: absolute;
-  bottom: 25%;
-  right: 5%;
+  bottom: 17%;
+  right: 3%;
   color: #ffffff;
   font-size: 1em;
+  overflow: auto;
+  }
+
+.text-shadow {
+  text-shadow: 0 0 5px #ffffff;
 }
+
+mark {
+  all: unset;
+}
+
+.active-nav {
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 0 5px #ffffff;
+}
+
+.inactive-nav {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: lighter;
+  text-shadow: none;
+}
+

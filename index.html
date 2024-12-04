@@ -11,7 +11,7 @@
   <div class="container">
     <div class="vertical-link">
       <a href="https://dvos.me">©dvos.me</a>
-      <a class="mode-switcher">white [ ]</a>
+      <a class="mode-switcher" onclick="alert('I dont like white mode >,<')">white [ ]</a>
       <a class="mode-switcher">dark [#]</a>
     </div>
     <div class="vertical-legacy-page">
@@ -19,16 +19,16 @@
     </div>
     <main class="canvas-container" id="canvas-container">
       <nav class="nav-container">
-          <a class="nav-contact" onclick="alert('Contact')">Contact</a>
+          <a class="nav-contact">Contact</a>
           <div class="nav-virtical-container">
-            <a class="nav-projects" onclick="alert('Projects')">Projects</a>
-            <a class="nav-home" onclick="alert('Home')">Home</a>
-            <a class="nav-inspiration" onclick="alert('Inspiration')">Inspiration</a>
+            <a class="nav-projects">Projects</a>
+            <a class="nav-home">Home</a>
+            <a class="nav-inspiration">Inspiration</a>
           </div>
-          <a class="nav-about" onclick="alert('About')">About</a>
+          <a class="nav-about">About</a>
       </nav>
       <div class="title-container">
-        <div class="main-title">
+        <div class="main-title text-shadow">
           David Vos
         </div>
         <div class="under-title">
@@ -37,7 +37,28 @@
       </div>
       <!-- Canvas and additional content will be added here -->
       <div class="main-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        <p id="main-text-home">
+            Hi <mark class="text-shadow">:wave:</mark><br>
+            I hope you enjoy your stay. <br>
+            Please have a look around.
+
+        </p>
+        <p id="main-text-about" style="display: none">
+            about<br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        </p>
+        <p id="main-text-projects" style="display: none">
+            projects<br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        </p>
+        <p id="main-text-inspiration" style="display: none">
+            inspiration<br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        </p>
+        <p id="main-text-contact" style="display: none">
+            contact<br>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        </p>
       </div>
     </main>
   </div>
