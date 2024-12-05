@@ -208,6 +208,12 @@ mark {
   all: unset;
 }
 
+a .text-shadow {
+  all: unset;
+  text-decoration: none;
+  text-shadow: 0 0 5px #ffffff;
+}
+
 .active-nav {
   color: #fff;
   font-weight: bold;
