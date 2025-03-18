@@ -291,8 +291,8 @@ a {
     width: 85%;
     right: auto;
     margin: 120vh auto 50px auto; 
-    font-size: 1rem;
-    line-height: 1.5;
+    font-size: 1.5rem;
+    line-height: 2;
     padding: 15px;
     white-space: normal;
     word-wrap: break-word;
@@ -312,16 +312,16 @@ a {
   }
   
   .under-title {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   
   .nav-container {
     top: 5%;
     left: 5%;
     width: 90%;
-    font-size: 1em;
+    font-size: 1.1em;
     display: flex;
-    justify-content: space-between; /* Better spacing on mobile */
+    justify-content: space-between;
   }
   
   .nav-container a {
@@ -338,16 +338,16 @@ a {
   }
   
   .nav-about, .nav-contact {
-    writing-mode: horizontal-tb; /* Normal horizontal text on mobile */
+    writing-mode: horizontal-tb;
     text-orientation: mixed;
     transform: none;
-    font-size: 1.1em;
+    font-size: 1.2em;
   }
   
   .nav-projects, .nav-inspiration {
-    transform: none; /* No rotation on mobile */
+    transform: none;
     margin: 0;
-    font-size: 1em;
+    font-size: 1.1em;
   }
   
   .vertical-link {
@@ -369,7 +369,7 @@ a {
     writing-mode: horizontal-tb;
     transform: none;
     margin-right: 10px;
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
   
   .vertical-legacy-page {
@@ -393,7 +393,7 @@ a {
   }
   
   .nav-container {
-    font-size: 0.85em;
+    font-size: 1em;
   }
   
   .nav-container a {
@@ -402,9 +402,17 @@ a {
   
   .main-text {
     margin-top: 110vh;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     width: 90%;
     max-width: 90%;
+  }
+  
+  .under-title {
+    font-size: 1.4rem;
+  }
+  
+  .vertical-link a {
+    font-size: 1em;
   }
 }
 
