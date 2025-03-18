@@ -393,7 +393,7 @@ a {
   }
   
   .nav-container {
-    font-size: 1em;
+    font-size: 1.2em;
   }
   
   .nav-container a {
@@ -401,7 +401,7 @@ a {
   }
   
   .main-text {
-    margin-top: 110vh;
+    height: 40vh;
     font-size: 1.1rem;
     width: 90%;
     max-width: 90%;
