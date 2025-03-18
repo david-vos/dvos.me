@@ -2,6 +2,8 @@ let molds = [];
 let num = 2000; // Number of molds
 let d;
 
+let width1, height1;
+
 function setup() {
   // Canvas setup
   const container = document.getElementById("canvas-container");
@@ -12,6 +14,9 @@ function setup() {
   noCursor();
   angleMode(DEGREES);
   d = pixelDensity();
+
+  width1 = width;
+  height1 = height;
 
   // Initialize molds
   for (let i = 0; i < num; i++) {
@@ -40,6 +45,11 @@ function windowResized() {
   // Calculate the change in width and height relative to the original
   const widthRatio = newWidth / width;
   const heightRatio = newHeight / height;
+
+
+  // Update the width and height variables
+  width1 = newWidth;
+  height1 = newHeight;
 
   // Update mold positions to be relative to the new canvas size
   for (let i = 0; i < num; i++) {
@@ -73,8 +83,8 @@ class Mold {
     this.vy = sin(this.heading);
 
     // Using % Modulo expression to wrap around the canvas
-    this.x = (this.x + this.vx + width) % width;
-    this.y = (this.y + this.vy + height) % height;
+    this.x = (this.x + this.vx + width1) % width1;
+    this.y = (this.y + this.vy + height1) % height1;
 
     // Get 3 sensor positions based on current position and heading
     this.getSensorPos(this.rSensorPos, this.heading + this.sensorAngle);
@@ -87,17 +97,17 @@ class Mold {
       r,
       f;
     index =
-      4 * (d * floor(this.rSensorPos.y)) * (d * width) +
+      4 * (d * floor(this.rSensorPos.y)) * (d * width1) +
       4 * (d * floor(this.rSensorPos.x));
     r = pixels[index];
 
     index =
-      4 * (d * floor(this.lSensorPos.y)) * (d * width) +
+      4 * (d * floor(this.lSensorPos.y)) * (d * width1) +
       4 * (d * floor(this.lSensorPos.x));
     l = pixels[index];
 
     index =
-      4 * (d * floor(this.fSensorPos.y)) * (d * width) +
+      4 * (d * floor(this.fSensorPos.y)) * (d * width1) +
       4 * (d * floor(this.fSensorPos.x));
     f = pixels[index];
 
@@ -124,7 +134,7 @@ class Mold {
   }
 
   getSensorPos(sensor, angle) {
-    sensor.x = (this.x + this.sensorDist * cos(angle) + width) % width;
-    sensor.y = (this.y + this.sensorDist * sin(angle) + height) % height;
+    sensor.x = (this.x + this.sensorDist * cos(angle) + width1) % width1;
+    sensor.y = (this.y + this.sensorDist * sin(angle) + height1) % height1;
   }
 }
