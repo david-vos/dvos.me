@@ -1,7 +1,7 @@
 let w = 15;
 let rez = 0.003; // Adjusted for smoother noise
 let amount = 250; // Maximum distortion strength
-let color1 = '#ffffff';
+let color1 = '#000000'; // Changed to black
 let time = 0;
 let easing = 0.05; // Easing for smooth delay
 let maxDistance; // Maximum distance for mouse influence
@@ -12,50 +12,6 @@ let mouseYDelayed = 0.25;
 let mouseXDelayed = 0.25;
 
 let mainCanvas;   // the main canvas element
-let grainBuffer;  // the graphics buffer to be layered onto the main canvas
-let grainShader;  // the shader
-let shouldAnimate = true 
-
-const frag = `
-precision highp float;
-varying vec2 vVertTexCoord;
-
-uniform sampler2D source;
-uniform float noiseSeed;
-uniform float noiseAmount;
-
-// Noise functions
-// https://github.com/patriciogonzalezvivo/lygia/blob/main/generative/random.glsl
-float rand(vec2 n) { 
-    return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
-}
-
-void main() {
-    // GorillaSun's grain algorithm
-    vec4 inColor = texture2D(source, vVertTexCoord);
-    gl_FragColor = clamp(inColor + vec4(
-        mix(-noiseAmount, noiseAmount, fract(noiseSeed + rand(vVertTexCoord * 1234.5678))),
-        mix(-noiseAmount, noiseAmount, fract(noiseSeed + rand(vVertTexCoord * 876.54321))),
-        mix(-noiseAmount, noiseAmount, fract(noiseSeed + rand(vVertTexCoord * 3214.5678))),
-        0.
-    ), 0., 1.);
-}
-`
-
-const vert = `
-precision highp float;
-attribute vec3 aPosition;
-attribute vec2 aTexCoord;
-uniform mat4 uModelViewMatrix;
-uniform mat4 uProjectionMatrix;
-varying vec2 vVertTexCoord;
-
-void main(void) {
-  vec4 positionVec4 = vec4(aPosition, 1.0);
-  gl_Position = uProjectionMatrix * uModelViewMatrix * positionVec4;
-  vVertTexCoord = aTexCoord;
-}
-`
 
 function setup() {
   // Select the container where the canvas should be placed
@@ -69,8 +25,6 @@ function setup() {
   noCursor();
 
   mainCanvas = createCanvas(windowWidth, windowHeight);
-  grainBuffer = createGraphics(width, height, WEBGL);
-  grainShader = grainBuffer.createShader(vert, frag);
 
   maxDistance = dist(0, 0, width, height);
   leeway = width / 10;
@@ -82,11 +36,10 @@ function setup() {
 }
 
 function draw() {
-  background('#000000');
+  background('#f5f5f5'); // Off-white background
   mouseXDelayed += (mouseX - mouseXDelayed) * easing;
   mouseYDelayed += (mouseY - mouseYDelayed) * easing;
   makeDistortedDots(amount, color1, rez, time, maxDistance, mouseXDelayed, mouseYDelayed);
-  applyGrain();
   time += 0.001;
 }
 
@@ -113,28 +66,16 @@ function windowResized() {
   resizeCanvas(container.offsetWidth, container.offsetHeight);
 }
 
-function applyGrain() {
-    grainBuffer.clear();
-    grainBuffer.reset();
-    grainBuffer.push();
-    grainBuffer.shader(grainShader);
-    grainShader.setUniform('source', mainCanvas);
-    grainShader.setUniform('noiseAmount', 0.22);
-    grainBuffer.rectMode(CENTER);
-    grainBuffer.noStroke();
-    grainBuffer.rect(0, 0, width, height);
-    grainBuffer.pop();
-
-    clear();
-    push();
-    image(grainBuffer, 0, 0);
-    pop();
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   const cursorBall = document.querySelector(".cursor-ball");
   const cursorOutline = document.querySelector(".cursor-outline");
   const links = document.querySelectorAll(".social-links a");
+  const modeSwitchers = document.querySelectorAll(".mode-switcher");
+
+  // Update only the cursor outline for white background, keep ball red
+  if (cursorOutline) {
+    cursorOutline.style.borderColor = "black";
+  }
 
   let mouseX = 0, mouseY = 0; // Mouse position
   let cursorX = 0, cursorY = 0; // Cursor outline position
@@ -187,9 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("Cursor elements not found in the DOM.");
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
   // Map of navigation elements and their corresponding text sections
   const navMapping = {
     "nav-home": "main-text-home",
@@ -246,4 +185,3 @@ document.addEventListener("DOMContentLoaded", () => {
   const defaultNavClass = "nav-home";
   document.querySelector(`.${defaultNavClass}`).click();
 });
-
