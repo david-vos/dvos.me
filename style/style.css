@@ -10,6 +10,50 @@ body, html {
   overflow: hidden;
 }
 
+/* White mode styles */
+.white-mode {
+  background-color: white;
+  color: black;
+}
+
+.white-mode .nav-container,
+.white-mode .main-text,
+.white-mode .title-container .main-title,
+.white-mode .title-container .under-title,
+.white-mode .nav-home {
+  color: black;
+}
+
+.white-mode .canvas-container {
+  border-color: black;
+}
+
+.white-mode .cursor-outline {
+  border-color: black;
+}
+
+.white-mode .text-shadow {
+  text-shadow: 0 0 5px #000000;
+}
+
+.white-mode .active-nav {
+  color: #000;
+  text-shadow: 0 0 5px #000000;
+}
+
+.white-mode .inactive-nav {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.white-mode .vertical-link a,
+.white-mode .vertical-legacy-page a {
+  color: #333;
+}
+
+.white-mode .cursor-ball {
+  background-color: blue;
+}
+
 .container {
   position: relative;
   width: 100%;

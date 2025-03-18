@@ -3,7 +3,7 @@
 <head>
   <title>David Vos - Software Developer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
   <div class="cursor-ball"></div>
@@ -11,8 +11,8 @@
   <div class="container">
     <div class="vertical-link">
       <a href="https://dvos.me">©dvos.me</a>
-      <a class="mode-switcher" onclick="alert('I dont like white mode >,<')">white [ ]</a>
-      <a class="mode-switcher">dark [#]</a>:write
+      <a class="mode-switcher" onclick="switchMode('white')">white [ ]</a>
+      <a class="mode-switcher" onclick="switchMode('dark')">dark [#]</a>
     </div>
     <div class="vertical-legacy-page">
         <a href="https://v0s.it" target="_blank" rel="noreferrer noopener">Legacy Page</a>
@@ -72,8 +72,65 @@
       </div>
     </main>
   </div>
-  <script src="./navigation.js"></script>
-  <script src="./p5.min.js"></script>
-  <script src="./script.js"></script>
+  <script>
+    function switchMode(mode) {
+      // Update URL with the selected mode
+      const url = new URL(window.location);
+      url.searchParams.set('mode', mode);
+      window.location.href = url.toString();
+    }
+    
+    // On page load, check for mode parameter and load appropriate script
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const mode = urlParams.get('mode');
+      
+      // Update mode switcher buttons based on current mode
+      const modeSwitchers = document.querySelectorAll('.mode-switcher');
+      if (modeSwitchers.length >= 2) {
+        if (mode === 'white') {
+          modeSwitchers[0].textContent = 'white [#]';
+          modeSwitchers[1].textContent = 'dark [ ]';
+        } else {
+          modeSwitchers[0].textContent = 'white [ ]';
+          modeSwitchers[1].textContent = 'dark [#]';
+        }
+      }
+      
+      // Load appropriate script based on mode
+      if (mode === 'white') {
+        // Apply white mode text colors
+        document.querySelectorAll('.main-text, .main-title, .under-title, .nav-container a').forEach(el => {
+          el.style.color = 'black';
+        });
+        
+        document.querySelectorAll('.text-shadow').forEach(el => {
+          el.style.textShadow = '0 0 5px #000000';
+        });
+        
+        document.querySelectorAll('.canvas-container').forEach(el => {
+          el.style.borderColor = 'black';
+        });
+        
+        document.querySelectorAll('.vertical-link a, .vertical-legacy-page a').forEach(el => {
+          el.style.color = '#333';
+        });
+        
+        // Remove the default script
+        const defaultScript = document.querySelector('script[src="./scripts/script.js"]');
+        if (defaultScript) {
+          defaultScript.remove();
+        }
+        
+        // Load the legacy script
+        const legacyScript = document.createElement('script');
+        legacyScript.src = './legacy/script.js';
+        document.body.appendChild(legacyScript);
+      }
+    });
+  </script>
+  <script src="./scripts/navigation.js"></script>
+  <script src="./scripts/p5.min.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>
