@@ -99,11 +99,15 @@ document.addEventListener("DOMContentLoaded", function () {
       el.style.borderColor = "black";
     });
 
-    document
-      .querySelectorAll(".vertical-link a, .vertical-legacy-page a")
-      .forEach((el) => {
-        el.style.color = "#ffffff";
-      });
+    // Only change vertical link colors if not in mobile view
+    if (window.innerWidth > 768) {
+      document
+        .querySelectorAll(".vertical-link a, .vertical-legacy-page a")
+        .forEach((el) => {
+          el.style.color = "#ffffff";
+        });
+    }
+    // If in mobile view, links remain gray (default color)
 
     // Remove the default script
     const defaultScript = document.querySelector(
