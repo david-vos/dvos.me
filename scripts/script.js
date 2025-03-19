@@ -11,7 +11,6 @@ function setup() {
   const containerHeight = container.offsetHeight;
   let canvas = createCanvas(containerWidth, containerHeight);
   canvas.parent("canvas-container");
-  noCursor();
   angleMode(DEGREES);
   d = pixelDensity();
 
@@ -45,7 +44,6 @@ function windowResized() {
   // Calculate the change in width and height relative to the original
   const widthRatio = newWidth / width;
   const heightRatio = newHeight / height;
-
 
   // Update the width and height variables
   width1 = newWidth;
@@ -82,7 +80,7 @@ class Mold {
     this.vx = cos(this.heading);
     this.vy = sin(this.heading);
 
-    // Using % Modulo expression to wrap around the canvas
+    // bounds
     this.x = (this.x + this.vx + width1) % width1;
     this.y = (this.y + this.vy + height1) % height1;
 
@@ -92,10 +90,7 @@ class Mold {
     this.getSensorPos(this.fSensorPos, this.heading);
 
     // Get indices of the 3 sensor positions and get the color values from those indices
-    let index,
-      l,
-      r,
-      f;
+    let index, l, r, f;
     index =
       4 * (d * floor(this.rSensorPos.y)) * (d * width1) +
       4 * (d * floor(this.rSensorPos.x));

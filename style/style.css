@@ -6,8 +6,18 @@ body, html {
   height: 100%;
   background-color: black;
   font-family: 'Doto', Arial, sans-serif;
-  cursor: none;
   overflow: hidden;
+}
+
+.main-text {
+  all: unset;
+  width: 20%;
+  position: absolute;
+  bottom: 17%;
+  right: 3%;
+  color: #ffffff;
+  font-size: 1em;
+  overflow: auto;
 }
 
 /* White mode styles */
@@ -24,11 +34,11 @@ body, html {
   color: black;
 }
 
-.white-mode .canvas-container {
-  border-color: black;
+.white-mode .vertical-link a {
+  color: white;
 }
 
-.white-mode .cursor-outline {
+.white-mode .canvas-container {
   border-color: black;
 }
 
@@ -48,10 +58,6 @@ body, html {
 .white-mode .vertical-link a,
 .white-mode .vertical-legacy-page a {
   color: #333;
-}
-
-.white-mode .cursor-ball {
-  background-color: blue;
 }
 
 .container {
@@ -202,48 +208,6 @@ body, html {
   overflow: hidden; /* Ensure no content spills out */
 }
 
-/* Cursor styling */
-.cursor-ball {
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  position: absolute;
-  border-radius: 50%;
-  z-index: 100;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-}
-
-.cursor-outline {
-  width: 2.1rem;
-  height: 2.1rem;
-  border: 1px solid white;
-  position: absolute;
-  border-radius: 50%;
-  z-index: 100;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: all 0.1s ease;
-}
-
-.cursor-mousedown {
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 2px solid black;
-  background-color: white;
-}
-
-  .main-text {
-  all: unset;
-  width: 20%;
-  position: absolute;
-  bottom: 17%;
-  right: 3%;
-  color: #ffffff;
-  font-size: 1em;
-  overflow: auto;
-  }
-
 .text-shadow {
   text-shadow: 0 0 5px #ffffff;
 }
@@ -272,7 +236,6 @@ a {
 /* Media Queries for Responsive Design */
 @media screen and (max-width: 768px) {
   body, html {
-    cursor: auto; /* Enable normal cursor on mobile */
     overflow: hidden; /* Keep overflow hidden by default */
   }
   
@@ -290,21 +253,12 @@ a {
   .main-text {
     width: 85%;
     right: auto;
-    margin: 120vh auto 50px auto; 
-    font-size: 1.5rem;
-    line-height: 2;
     padding: 15px;
     white-space: normal;
-    word-wrap: break-word;
     max-width: 85%;
     box-sizing: border-box;
     display: block;
-  }
-  
-  .title-container {
-    width: 90%;
-    top: 15%;
-    left: 5%;
+    max-height: 40%;
   }
   
   .main-title {
@@ -316,12 +270,10 @@ a {
   }
   
   .nav-container {
-    top: 5%;
-    left: 5%;
     width: 90%;
     font-size: 1.1em;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
   
   .nav-container a {
@@ -375,11 +327,6 @@ a {
   .vertical-legacy-page {
     display: none;
   }
-  
-  /* Cursor elements are not needed on touch devices */
-  .cursor-ball, .cursor-outline {
-    display: none;
-  }
 }
 
 /* Small phones */
@@ -401,10 +348,7 @@ a {
   }
   
   .main-text {
-    height: 40vh;
     font-size: 1.1rem;
-    width: 90%;
-    max-width: 90%;
   }
   
   .under-title {

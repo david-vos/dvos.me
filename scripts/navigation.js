@@ -1,69 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const cursorBall = document.querySelector(".cursor-ball");
-  const cursorOutline = document.querySelector(".cursor-outline");
-  const links = document.querySelectorAll(".social-links a");
-
-  let mouseX = 0, mouseY = 0; // Mouse position
-  let cursorX = 0, cursorY = 0; // Cursor outline position
-  const easing = 0.1; // Adjust easing for smoother movement
-
-  // Ensure elements exist before adding event listeners
-  if (cursorBall && cursorOutline) {
-    document.addEventListener("mousemove", (e) => {
-      // Directly move the cursor-ball for instant response
-      mouseX = e.pageX;
-      mouseY = e.pageY;
-
-      cursorBall.style.top = `${mouseY}px`;
-      cursorBall.style.left = `${mouseX}px`;
-    });
-
-    function animateCursor() {
-      // Smoothly interpolate the cursorOutline position
-      cursorX += (mouseX - cursorX) * easing;
-      cursorY += (mouseY - cursorY) * easing;
-
-      cursorOutline.style.top = `${cursorY}px`;
-      cursorOutline.style.left = `${cursorX}px`;
-
-      requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    document.addEventListener("mousedown", (e) => {
-      if (e.button === 0) {
-        cursorOutline.classList.add("cursor-mousedown");
-      }
-    });
-
-    document.addEventListener("mouseup", () => {
-      cursorOutline.classList.remove("cursor-mousedown");
-    });
-
-    links.forEach((link) => {
-      link.addEventListener("mouseover", () => {
-        cursorOutline.classList.add("scale-link");
-        link.classList.add("hovered-link");
-
-        link.addEventListener("mouseleave", () => {
-          cursorOutline.classList.remove("scale-link");
-          link.classList.remove("hovered-link");
-        });
-      });
-    });
-  } else {
-    console.error("Cursor elements not found in the DOM.");
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
   // Map of navigation elements and their corresponding text sections
   const navMapping = {
     "nav-home": "main-text-home",
     "nav-about": "main-text-about",
     "nav-projects": "main-text-projects",
     "nav-inspiration": "main-text-inspiration",
-    "nav-contact": "main-text-contact"
+    "nav-contact": "main-text-contact",
   };
 
   // Get all nav elements
@@ -71,26 +13,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Function to update active styles for the nav menu
   const updateNavStyles = (activeNavClass) => {
-    navItems.forEach(navItem => {
+    navItems.forEach((navItem) => {
       if (navItem.classList.contains(activeNavClass)) {
-       navItem.classList.add("active-nav");
-       navItem.classList.remove("inactive-nav");
+        navItem.classList.add("active-nav");
+        navItem.classList.remove("inactive-nav");
       } else {
-       navItem.classList.add("inactive-nav");
-       navItem.classList.remove("active-nav"); 
+        navItem.classList.add("inactive-nav");
+        navItem.classList.remove("active-nav");
       }
     });
   };
 
   // Attach event listeners to each nav item
-  navItems.forEach(navItem => {
+  navItems.forEach((navItem) => {
     navItem.addEventListener("click", () => {
       // Get the ID of the corresponding text section
       const targetId = navMapping[navItem.classList[0]];
-      
+
       if (targetId) {
         // Hide all main text sections
-        Object.values(navMapping).forEach(id => {
+        Object.values(navMapping).forEach((id) => {
           const section = document.getElementById(id);
           if (section) {
             section.style.display = "none";
@@ -114,3 +56,66 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(`.${defaultNavClass}`).click();
 });
 
+function switchMode(mode) {
+  // Update URL with the selected mode
+  const url = new URL(window.location);
+  url.searchParams.set("mode", mode);
+  window.location.href = url.toString();
+}
+
+// On page load, check for mode parameter and load appropriate script
+document.addEventListener("DOMContentLoaded", function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const mode = urlParams.get("mode");
+
+  // Update mode switcher buttons based on current mode
+  const modeSwitchers = document.querySelectorAll(".mode-switcher");
+  if (modeSwitchers.length >= 2) {
+    if (mode === "white") {
+      modeSwitchers[0].textContent = "white [#]";
+      modeSwitchers[1].textContent = "dark [ ]";
+    } else {
+      modeSwitchers[0].textContent = "white [ ]";
+      modeSwitchers[1].textContent = "dark [#]";
+    }
+  }
+
+  // Load appropriate script based on mode
+  if (mode === "white") {
+    // Apply white mode text colors
+    document
+      .querySelectorAll(
+        ".main-text, .main-title, .under-title, .nav-container a"
+      )
+      .forEach((el) => {
+        el.style.color = "black";
+      });
+
+    document.querySelectorAll(".text-shadow").forEach((el) => {
+      el.style.textShadow = "0 0 5px #000000";
+    });
+
+    document.querySelectorAll(".canvas-container").forEach((el) => {
+      el.style.borderColor = "black";
+    });
+
+    document
+      .querySelectorAll(".vertical-link a, .vertical-legacy-page a")
+      .forEach((el) => {
+        el.style.color = "#ffffff";
+      });
+
+    // Remove the default script
+    const defaultScript = document.querySelector(
+      'script[src="./scripts/script.js"]'
+    );
+    if (defaultScript) {
+      defaultScript.remove();
+    }
+
+    // Load the legacy script
+    const legacyScript = document.createElement("script");
+    legacyScript.src = "./legacy/script.js";
+    document.body.appendChild(legacyScript);
+  }
+});
