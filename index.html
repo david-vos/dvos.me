@@ -116,8 +116,24 @@
     </main>
   </div>
 
-  <script src="./scripts/navigation.js" defer></script>
-  <script src="./scripts/script.js" defer></script>
-  <script src="./scripts/p5.min.js" defer></script>
+  <!-- Using jsDelivr CDN for better performance and caching -->
+  <script src="https://cdn.jsdelivr.net/gh/david-vos/dvos.me@main/scripts/navigation.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/david-vos/dvos.me@main/scripts/p5.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/gh/david-vos/dvos.me@main/scripts/script.js" defer></script>
+  
+  <!-- Service worker registration for offline caching -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('ServiceWorker registration successful');
+          })
+          .catch(error => {
+            console.log('ServiceWorker registration failed: ', error);
+          });
+      });
+    }
+  </script>
 </body>
 </html>
