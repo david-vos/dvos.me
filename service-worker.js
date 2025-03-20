@@ -1,4 +1,4 @@
-const CACHE_NAME = 'dvos-site-cache-v1';
+const CACHE_NAME = 'dvos-site-cache-v2';
 const urlsToCache = [
   '/',
   '/index.html',
