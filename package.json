@@ -1,0 +1,24 @@
+{
+  "name": "dvos-me",
+  "version": "1.0.0",
+  "description": "David Vos personal website",
+  "scripts": {
+    "build": "npm run clean && npm run minify-css && npm run minify-js && npm run copy-assets && npm run process-html",
+    "clean": "rm -rf dist && mkdir -p dist",
+    "process-html": "node build.js && npm run minify-html",
+    "minify-html": "html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true dist/index.html -o dist/index.html",
+    "minify-css": "cleancss -o dist/style/style.css style/style.css",
+    "minify-js": "mkdir -p dist/scripts && uglifyjs scripts/script.js scripts/navigation.js -o dist/scripts/script.min.js && cp scripts/p5.min.js dist/scripts/",
+    "copy-assets": "cp -r Favicon dist/ && cp -r legacy dist/ && cp service-worker.js dist/",
+    "dev": "npx http-server -p 3000"
+  },
+  "devDependencies": {
+    "html-minifier": "^4.0.0",
+    "clean-css-cli": "^5.6.0",
+    "uglify-js": "^3.17.4",
+    "http-server": "^14.1.1"
+  },
+  "keywords": ["personal-website", "p5js", "interactive"],
+  "author": "David Vos",
+  "license": "MIT"
+} 
