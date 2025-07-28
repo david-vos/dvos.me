@@ -4,5 +4,5 @@ services:
   dvos-me:
     build: .
     ports:
-      - "3000:3000"
+      - "4545:4545"
     restart: unless-stopped 

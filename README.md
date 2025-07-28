@@ -21,11 +21,11 @@ David Vos's personal website built with HTML, CSS, and JavaScript using P5.js fo
    docker build -t dvos-me .
    
    # Run the container
-   docker run -d -p 3000:3000 --name dvos-me dvos-me
+   docker run -d -p 4545:4545 --name dvos-me dvos-me
    ```
 
 3. **Access the website:**
-   - Open your browser and go to `http://localhost:3000`
+   - Open your browser and go to `http://localhost:4545`
 
 ### Features
 - Simple static file serving using `serve`
@@ -37,5 +37,5 @@ David Vos's personal website built with HTML, CSS, and JavaScript using P5.js fo
 For local development without Docker:
 ```bash
 npm install -g serve
-serve -s . -l 3000
+serve -s . -l 4545
 ``` 
