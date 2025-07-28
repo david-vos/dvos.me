@@ -1,35 +1,17 @@
-# Use Node.js for build process
-FROM node:18-alpine AS builder
+# Use Node.js Alpine image
+FROM node:18-alpine
 
-# Install build tools
-RUN apk add --no-cache git
+# Install serve globally
+RUN npm install -g serve
 
 # Set working directory
 WORKDIR /app
 
-# Copy package files for build dependencies
-COPY package*.json ./
-
-# Install all dependencies (including dev dependencies for build)
-RUN npm install
-
-# Copy source files
+# Copy all files
 COPY . .
 
-# Build and minify the website
-RUN npm run build
-
-# Production stage
-FROM nginx:alpine
-
-# Copy built files from builder stage
-COPY --from=builder /app/dist /usr/share/nginx/html/
-
-# Copy nginx configuration
-COPY nginx.conf /etc/nginx/nginx.conf
-
-# Expose port 3000 for local access
+# Expose port 3000
 EXPOSE 3000
 
-# Start nginx in the foreground
-CMD ["nginx", "-g", "daemon off;"] 
+# Start serve
+CMD ["serve", "-s", ".", "-l", "3000"] 
